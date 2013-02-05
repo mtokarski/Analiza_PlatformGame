@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="212" height="20" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="tsmario2" tilewidth="16" tileheight="16">
+  <image source="tsmario2.png" width="640" height="256"/>
+ </tileset>
+ <layer name="Background" width="212" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt2EFOwzAQhWG7WwS9CyA4C20pZw6cAThDYMNYitUoKokTT+xO9X/S7Cz7jRMnSpwDAAAAAACw7Wnj3POmdgrgcs05I0cZ95Z5nj69c19S3z5vniU0ngeW81vOHpXuYW5ujTMSxV7H+r2Vte6ktkpraj0PUrIHl5o/mOpBO3uQmj/lPqtx/0zRPB9zxV4t9lsje6B5vSzvf1DrGvAdA+ip+Q4CAAAAAABIcWP83wX56yL/yb3M9SD1mDBn45177+rDj2dpemNyNIP1htbKH8ev3YOV/dfIf06J/R+Tm7/vRebYSe2lDlKvE3O20ttPV79+PEvbjcnV9tYrmb9ED5b2XyP/UKn9/09u/mvNsgT567KeH8C6/gAUrHOC
+  </data>
+ </layer>
+ <layer name="Walls" width="212" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt2FEOwiAQRVGUP7fSFen2dDe6KPshSW2BGQoUxHuSiSYtiDgvbTUGAAAAAAAAAAAA2Lq0XgAwkFvrBQAD6S1PU+sFHOQsVOjcnP1JHRtajzs2fcp3fDT2U5Le8gT0xhryBJRgDXkCSlhnqec8re/l3f348rWG+1yPCudqlPhuobGh55xJ8V4zf8pnOjbwXrLu3ZSxzvJ5c89++7LUc55qkTLwnOulnCvlXHzzZULTj77e1Y4tJZSlkfKkvVZIGSBP9cUyEevJUO9KY3PvI5bjY1mqmafrwX+SanubPLWlyYSvL2O9K43N/Z3ceClL2uvrHidqUyX2hj0uu5/U75ZTYo7ceUaof9qHN1zGIcc=
+  </data>
+ </layer>
+</map>
