@@ -1,33 +1,32 @@
 //
-//  Player.m
+//  Goomba.m
 //  iMario_iOS
 //
-//  Created by Michał Tokarski on 1/14/13.
+//  Created by Michał Tokarski on 2/6/13.
 //  Copyright 2013 __MyCompanyName__. All rights reserved.
 //
 
-#import "Player.h"
+#import "Goomba.h"
 
 
-@implementation Player
+@implementation Goomba
 
 @synthesize velocity = _velocity;
 @synthesize desiredPosition = _desiredPosition;
 @synthesize onGround = _onGround;
 
 @synthesize walkAction = _walkAction;
-@synthesize jumpAction = _jumpAction;
-@synthesize idleAction = _idleAction;
-@synthesize deadAction = _deadAction;
 
 @synthesize forwardMarch = _forwardMarch;
 @synthesize backwardMarch = _backwardMarch;
-@synthesize mightAsWellJump = _mightAsWellJump;
+
+@synthesize Init = _Init;
 
 -(id)initWithSpriteFrameName:(NSString *)spriteFrameName
 {
     if (self = [super initWithSpriteFrameName:spriteFrameName]) {
         self.velocity = ccp(0.0, 0.0);
+        self.Init = YES;
     }
     return self;
 }
@@ -43,16 +42,7 @@
     CGPoint backwardStep = ccpMult(backwardMove, dt);
     
     self.velocity = ccpAdd(self.velocity, gravityStep);
-    self.velocity = ccp(self.velocity.x * 0.90, self.velocity.y);
-    
-    CGPoint jumpForce = ccp(0.0, 310.0);
-    float jumpCutoff = 150.0;
-    
-    if (self.mightAsWellJump && self.onGround) {
-        self.velocity = ccpAdd(self.velocity, jumpForce);
-    } else if (!self.mightAsWellJump && self.velocity.y > jumpCutoff) {
-        self.velocity = ccp(self.velocity.x, jumpCutoff);
-    }
+    self.velocity = ccp(self.velocity.x, self.velocity.y);
     
     if (self.forwardMarch) {
         self.velocity = ccpAdd(self.velocity, forwardStep);
@@ -61,8 +51,8 @@
         self.velocity = ccpAdd(self.velocity, backwardStep);
     }
     
-    CGPoint minMovement = ccp(-90.0, -450.0);
-    CGPoint maxMovement = ccp(90.0, 250.0);
+    CGPoint minMovement = ccp(-30.0, -450.0);
+    CGPoint maxMovement = ccp(30.0, 250.0);
     self.velocity = ccpClamp(self.velocity, minMovement, maxMovement);
     
     CGPoint stepVelocity = ccpMult(self.velocity, dt);

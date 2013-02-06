@@ -18,6 +18,9 @@
 		AD21BE3D16A3E78E004341D0 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = AD21BE3C16A3E78E004341D0 /* Player.m */; };
 		AD21BE4416A3EF71004341D0 /* mario_default.png in Resources */ = {isa = PBXBuildFile; fileRef = AD21BE4216A3EF71004341D0 /* mario_default.png */; };
 		AD21BE4516A3EF71004341D0 /* mario_default.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD21BE4316A3EF71004341D0 /* mario_default.plist */; };
+		AD4E3F1F16C2C9640023C4E3 /* Goomba_default.png in Resources */ = {isa = PBXBuildFile; fileRef = AD4E3F1D16C2C9640023C4E3 /* Goomba_default.png */; };
+		AD4E3F2016C2C9640023C4E3 /* Goomba_default.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD4E3F1E16C2C9640023C4E3 /* Goomba_default.plist */; };
+		AD4E3F2316C2C99A0023C4E3 /* Goomba.m in Sources */ = {isa = PBXBuildFile; fileRef = AD4E3F2216C2C99A0023C4E3 /* Goomba.m */; };
 		ADA7ADA716A2FE1A00173D6A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA7ADA616A2FE1A00173D6A /* QuartzCore.framework */; };
 		ADA7ADA916A2FE1A00173D6A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA7ADA816A2FE1A00173D6A /* OpenGLES.framework */; };
 		ADA7ADAB16A2FE1A00173D6A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA7ADAA16A2FE1A00173D6A /* OpenAL.framework */; };
@@ -196,6 +199,10 @@
 		AD21BE3C16A3E78E004341D0 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = Sprites/Player.m; sourceTree = "<group>"; };
 		AD21BE4216A3EF71004341D0 /* mario_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mario_default.png; path = Resources/mario_default.png; sourceTree = "<group>"; };
 		AD21BE4316A3EF71004341D0 /* mario_default.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = mario_default.plist; path = Resources/mario_default.plist; sourceTree = "<group>"; };
+		AD4E3F1D16C2C9640023C4E3 /* Goomba_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Goomba_default.png; path = Resources/Goomba_default.png; sourceTree = "<group>"; };
+		AD4E3F1E16C2C9640023C4E3 /* Goomba_default.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Goomba_default.plist; path = Resources/Goomba_default.plist; sourceTree = "<group>"; };
+		AD4E3F2116C2C99A0023C4E3 /* Goomba.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Goomba.h; path = Sprites/Goomba.h; sourceTree = "<group>"; };
+		AD4E3F2216C2C99A0023C4E3 /* Goomba.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Goomba.m; path = Sprites/Goomba.m; sourceTree = "<group>"; };
 		ADA7ADA216A2FE1A00173D6A /* iMario_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMario_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADA7ADA616A2FE1A00173D6A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		ADA7ADA816A2FE1A00173D6A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -534,6 +541,8 @@
 			children = (
 				AD21BE3B16A3E78E004341D0 /* Player.h */,
 				AD21BE3C16A3E78E004341D0 /* Player.m */,
+				AD4E3F2116C2C99A0023C4E3 /* Goomba.h */,
+				AD4E3F2216C2C99A0023C4E3 /* Goomba.m */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -591,6 +600,8 @@
 		ADA7ADB916A2FE1A00173D6A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AD4E3F1D16C2C9640023C4E3 /* Goomba_default.png */,
+				AD4E3F1E16C2C9640023C4E3 /* Goomba_default.plist */,
 				ADD6E61A16C19E8300C2F6B1 /* jump.png */,
 				ADD6E61B16C19E8300C2F6B1 /* left.png */,
 				ADD6E61C16C19E8300C2F6B1 /* right.png */,
@@ -1154,6 +1165,8 @@
 				ADD6E61D16C19E8300C2F6B1 /* jump.png in Resources */,
 				ADD6E61E16C19E8300C2F6B1 /* left.png in Resources */,
 				ADD6E61F16C19E8300C2F6B1 /* right.png in Resources */,
+				AD4E3F1F16C2C9640023C4E3 /* Goomba_default.png in Resources */,
+				AD4E3F2016C2C9640023C4E3 /* Goomba_default.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1291,6 +1304,7 @@
 				AD21BE3816A3E713004341D0 /* GameLevelLayer.m in Sources */,
 				AD21BE3A16A3E713004341D0 /* MainMenuLayer.m in Sources */,
 				AD21BE3D16A3E78E004341D0 /* Player.m in Sources */,
+				AD4E3F2316C2C99A0023C4E3 /* Goomba.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
