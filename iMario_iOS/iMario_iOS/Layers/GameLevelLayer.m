@@ -40,7 +40,7 @@
         
         walls = [map layerNamed:@"Walls"];
         
-        // Create animation for Mario
+// Create animation for Mario
         [[CCSpriteFrameCache sharedSpriteFrameCache]
          addSpriteFramesWithFile:@"mario_default.plist"];
         
@@ -74,10 +74,10 @@
         CCAnimation *jumpAnim = [CCAnimation animationWithSpriteFrames:jumpAnimFrames delay:0.15f];
         CCAnimation *idleAnim = [CCAnimation animationWithSpriteFrames:idleAnimFrames delay:0.15f];
         CCAnimation *deadAnim = [CCAnimation animationWithSpriteFrames:deadAnimFrames delay:0.15f];
-        // Animation created
+// Animation created
         
         
-        // Goomba animation
+// Goomba animation
         [[CCSpriteFrameCache sharedSpriteFrameCache]
          addSpriteFramesWithFile:@"Goomba_default.plist"];
         
@@ -93,77 +93,68 @@
         }
         
         CCAnimation *goombaAnim = [CCAnimation animationWithSpriteFrames:goombaAnimFrames delay:0.25f];
-        // Goomba animation created
+// Goomba animation created
+
         
-        // Init some goombas
-        // Goomba 1
+// Init some goombas
+    // Goomba 1
         goomba1 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
         goomba1.position = ccp(416, 55);
         [map addChild:goomba1 z:15];
         goomba1.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
-        
-        // Goomba 2
+    // Goomba 2
         goomba2 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
         goomba2.position = ccp(704, 55);
         [map addChild:goomba2 z:15];
         goomba2.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
-        
-        // Goomba 3
+    // Goomba 3
         goomba3 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
         goomba3.position = ccp(848, 55);
         [map addChild:goomba3 z:15];
         goomba3.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
-        
-        // Goomba 4
+    // Goomba 4
         goomba4 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
         goomba4.position = ccp(1296, 185);
         [map addChild:goomba4 z:15];
         goomba4.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
-        
-        // Goomba 5
+    // Goomba 5
         goomba5 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
         goomba5.position = ccp(1328, 185);
         [map addChild:goomba5 z:15];
         goomba5.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
-        
-        // Goomba 6
+    // Goomba 6
         goomba6 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
         goomba6.position = ccp(1536, 55);
         [map addChild:goomba6 z:15];
         goomba6.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
-        
-        // Goomba 7
+    // Goomba 7
         goomba7 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
         goomba7.position = ccp(1632, 55);
         [map addChild:goomba7 z:15];
         goomba7.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
-        
-        // Goomba 8
+    // Goomba 8
         goomba8 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
         goomba8.position = ccp(1936, 55);
         [map addChild:goomba8 z:15];
         goomba8.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
-        
-        // Goomba 9
+    // Goomba 9
         goomba9 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
         goomba9.position = ccp(2064, 55);
         [map addChild:goomba9 z:15];
         goomba9.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
-        
-        // Goomba 10
+    // Goomba 10
         goomba10 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
         goomba10.position = ccp(2720, 55);
         [map addChild:goomba10 z:15];
         goomba10.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
-        
-        // Goomba11
+    // Goomba11
         goomba11 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
         goomba11.position = ccp(2832, 55);
         [map addChild:goomba11 z:15];
         goomba11.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
 
         
-        // Create player
+// Create player
         mario = [[Player alloc] initWithSpriteFrameName:@"Mario_Idle.png"];
         mario.position = ccp(100, 55);
         [map addChild:mario z:15];
@@ -179,51 +170,48 @@
         
         mario.deadAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:deadAnim]];
         deadAnim.restoreOriginalFrame = NO;
+// Player created
         
         [self schedule:@selector(update:)];
 	}
 	return self;
-}
+}   // Quite a long Init
+
+
+
+// Update - it's ALIVE !
 
 -(void)update:(ccTime)dt
 {
     if (gameOver) {
-        return; // For now just for the sake of game end handling
+        return;
     }
+    
+    // I bet it's not the best approach. Too tired today to work on that.
     
     [mario update:dt];
     [self checkForAndResolveCollisions:mario];
     
     [goomba1 update:dt];
     [self goombaCollisions:goomba1];
-    
     [goomba2 update:dt];
     [self goombaCollisions:goomba2];
-    
     [goomba3 update:dt];
     [self goombaCollisions:goomba3];
-    
     [goomba4 update:dt];
     [self goombaCollisions:goomba4];
-    
     [goomba5 update:dt];
     [self goombaCollisions:goomba5];
-    
     [goomba6 update:dt];
     [self goombaCollisions:goomba6];
-    
     [goomba7 update:dt];
     [self goombaCollisions:goomba7];
-    
     [goomba8 update:dt];
     [self goombaCollisions:goomba8];
-    
     [goomba9 update:dt];
     [self goombaCollisions:goomba9];
-    
     [goomba10 update:dt];
     [self goombaCollisions:goomba10];
-    
     [goomba11 update:dt];
     [self goombaCollisions:goomba11];
     
@@ -242,63 +230,92 @@
     [self setViewpointCenter:mario.position];
 }
 
+// Some tile checking for physics
+
+    - (CGPoint)tileCoordForPosition:(CGPoint)position
+    {
+        float x = floor(position.x / map.tileSize.width);
+        float levelHeightInPixels = map.mapSize.height * map.tileSize.height;
+        float y = floor((levelHeightInPixels - position.y) / map.tileSize.height);
+        return ccp(x, y);
+    }
+
+    -(CGRect)tileRectFromTileCoords:(CGPoint)tileCoords
+    {
+        float levelHeightInPixels = map.mapSize.height * map.tileSize.height;
+        CGPoint origin = ccp(tileCoords.x * map.tileSize.width, levelHeightInPixels - ((tileCoords.y + 1) * map.tileSize.height));
+        return CGRectMake(origin.x, origin.y, map.tileSize.width, map.tileSize.height);
+    }
+// End
+
+
+
+// Goomba stuff
+
 -(void)initGoomba:(Goomba *) g {
     g.backwardMarch = YES;
     [g runAction:g.walkAction];
 }
 
-- (CGPoint)tileCoordForPosition:(CGPoint)position
-{
-    float x = floor(position.x / map.tileSize.width);
-    float levelHeightInPixels = map.mapSize.height * map.tileSize.height;
-    float y = floor((levelHeightInPixels - position.y) / map.tileSize.height);
-    return ccp(x, y);
-}
-
--(CGRect)tileRectFromTileCoords:(CGPoint)tileCoords
-{
-    float levelHeightInPixels = map.mapSize.height * map.tileSize.height;
-    CGPoint origin = ccp(tileCoords.x * map.tileSize.width, levelHeightInPixels - ((tileCoords.y + 1) * map.tileSize.height));
-    return CGRectMake(origin.x, origin.y, map.tileSize.width, map.tileSize.height);
-}
-
--(NSArray *)getSurroundingTilesAtPosition:(CGPoint)position forLayer:(CCTMXLayer *)layer {
+-(void)handleGoombasLikeABoss:(Goomba *)g with:(Player *)p {
     
-    CGPoint plPos = [self tileCoordForPosition:position];
-    
-    NSMutableArray *gids = [NSMutableArray array];
-    
-    for (int i = 0; i < 9; i++) {
-        int c = i % 3;
-        int r = (int)(i / 3);
-        CGPoint tilePos = ccp(plPos.x + (c - 1), plPos.y + (r - 1));
-        
-        if (tilePos.y > (map.mapSize.height - 1)) {  // falling goomba causes Game Over :(
-            [self gameOver:0];
-            return nil;
+    if (p.position.x < g.position.x && g.position.x - p.position.x < 240) {
+        if (g.Init) {
+            g.Init = NO;
+            [self initGoomba:g];
         }
-        
-        int tgid = [layer tileGIDAt:tilePos];
-        
-        CGRect tileRect = [self tileRectFromTileCoords:tilePos];
-        
-        NSDictionary *tileDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [NSNumber numberWithInt:tgid], @"gid",
-                                  [NSNumber numberWithFloat:tileRect.origin.x], @"x",
-                                  [NSNumber numberWithFloat:tileRect.origin.y], @"y",
-                                  [NSValue valueWithCGPoint:tilePos],@"tilePos",
-                                  nil];
-        [gids addObject:tileDict];
-        
     }
-    
-    [gids removeObjectAtIndex:4];
-    [gids insertObject:[gids objectAtIndex:2] atIndex:6];
-    [gids removeObjectAtIndex:2];
-    [gids exchangeObjectAtIndex:4 withObjectAtIndex:6];
-    [gids exchangeObjectAtIndex:0 withObjectAtIndex:4];
+    if (p.position.x > g.position.x && p.position.x - g.position.x > 240) {
+        [g removeFromParentAndCleanup:YES];
+    }
+    CGRect pRect = [p collisionBoundingBox];
+    CGRect gRect = [g collisionBoundingBox];
+    if (CGRectIntersectsRect(pRect, gRect)) {
+        if (abs(p.position.x - g.position.x) <= 8 && p.position.y > g.position.y) {
+            [g removeFromParentAndCleanup:YES];
+            g.Dead = YES;
+        } else if (!(g.Dead)) {
+            [self gameOver:0];
+        }
+    }
+}
 
-    return (NSArray *)gids;
+-(void)goombaCollisions:(Goomba *)g {
+    
+    NSArray *tiles = [self GOOMBAgetSurroundingTilesAtPosition:g.position forLayer:walls ];
+    
+    g.onGround = NO;
+    
+    for (NSDictionary *dic in tiles) {
+        CGRect pRect = [g collisionBoundingBox];
+        
+        int gid = [[dic objectForKey:@"gid"] intValue];
+        if (gid) {
+            CGRect tileRect = CGRectMake([[dic objectForKey:@"x"] floatValue], [[dic objectForKey:@"y"] floatValue], map.tileSize.width, map.tileSize.height);
+            if (CGRectIntersectsRect(pRect, tileRect)) {
+                CGRect intersection = CGRectIntersection(pRect, tileRect);
+                int tileIndx = [tiles indexOfObject:dic];
+                
+                if (tileIndx == 0) {
+                    //tile is directly below player
+                    g.desiredPosition = ccp(g.desiredPosition.x, g.desiredPosition.y + intersection.size.height);
+                    g.velocity = ccp(g.velocity.x, 0.0);
+                    g.onGround = YES;
+                } else if (tileIndx == 2) {
+                    //tile is left of player
+                    g.desiredPosition = ccp(g.desiredPosition.x + intersection.size.width, g.desiredPosition.y);
+                    g.backwardMarch = NO;
+                    g.forwardMarch = YES;
+                } else if (tileIndx == 3) {
+                    //tile is right of player
+                    g.desiredPosition = ccp(g.desiredPosition.x - intersection.size.width, g.desiredPosition.y);
+                    g.forwardMarch = NO;
+                    g.backwardMarch = YES;
+                }
+            }
+        }
+    }
+    g.position = g.desiredPosition;
 }
 
 -(NSArray *)GOOMBAgetSurroundingTilesAtPosition:(CGPoint)position forLayer:(CCTMXLayer *)layer {
@@ -335,31 +352,52 @@
     [gids removeObjectAtIndex:2];
     [gids exchangeObjectAtIndex:4 withObjectAtIndex:6];
     [gids exchangeObjectAtIndex:0 withObjectAtIndex:4];
-
+    
     return (NSArray *)gids;
 }
+// Goomba stuff ends here
 
--(void)handleGoombasLikeABoss:(Goomba *)g with:(Player *)p {
+
+
+// Player physics
+
+-(NSArray *)getSurroundingTilesAtPosition:(CGPoint)position forLayer:(CCTMXLayer *)layer {
     
-    if (p.position.x < g.position.x && g.position.x - p.position.x < 240) {
-        if (g.Init) {
-            g.Init = NO;
-            [self initGoomba:g];
-        }
-    }
-    if (p.position.x > g.position.x && p.position.x - g.position.x > 240) {
-        [g removeFromParentAndCleanup:YES];
-    }
-    CGRect pRect = [p collisionBoundingBox];
-    CGRect gRect = [g collisionBoundingBox];
-    if (CGRectIntersectsRect(pRect, gRect)) {
-        if (abs(p.position.x - g.position.x) <= 8 && p.position.y > g.position.y) {
-            [g removeFromParentAndCleanup:YES];
-            g.Dead = YES;
-        } else if (!(g.Dead)) {
+    CGPoint plPos = [self tileCoordForPosition:position];
+    
+    NSMutableArray *gids = [NSMutableArray array];
+    
+    for (int i = 0; i < 9; i++) {
+        int c = i % 3;
+        int r = (int)(i / 3);
+        CGPoint tilePos = ccp(plPos.x + (c - 1), plPos.y + (r - 1));
+        
+        if (tilePos.y > (map.mapSize.height - 1)) {  // falling goomba causes Game Over :(
             [self gameOver:0];
+            return nil;
         }
+        
+        int tgid = [layer tileGIDAt:tilePos];
+        
+        CGRect tileRect = [self tileRectFromTileCoords:tilePos];
+        
+        NSDictionary *tileDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [NSNumber numberWithInt:tgid], @"gid",
+                                  [NSNumber numberWithFloat:tileRect.origin.x], @"x",
+                                  [NSNumber numberWithFloat:tileRect.origin.y], @"y",
+                                  [NSValue valueWithCGPoint:tilePos],@"tilePos",
+                                  nil];
+        [gids addObject:tileDict];
+        
     }
+    
+    [gids removeObjectAtIndex:4];
+    [gids insertObject:[gids objectAtIndex:2] atIndex:6];
+    [gids removeObjectAtIndex:2];
+    [gids exchangeObjectAtIndex:4 withObjectAtIndex:6];
+    [gids exchangeObjectAtIndex:0 withObjectAtIndex:4];
+    
+    return (NSArray *)gids;
 }
 
 -(void)checkForAndResolveCollisions:(Player *)p {
@@ -422,47 +460,31 @@
     p.position = p.desiredPosition;
 }
 
-
--(void)goombaCollisions:(Goomba *)g {
+-(void)setViewpointCenter:(CGPoint) position {
     
-    NSArray *tiles = [self GOOMBAgetSurroundingTilesAtPosition:g.position forLayer:walls ];
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
     
-    g.onGround = NO;
+    int x = MAX(position.x, winSize.width / 2);
+    int y = MAX(position.y, winSize.height / 2);
+    x = MIN(x, (map.mapSize.width * map.tileSize.width)
+            - winSize.width / 2);
+    y = MIN(y, (map.mapSize.height * map.tileSize.height)
+            - winSize.height/2);
+    CGPoint actualPosition = ccp(x, y);
     
-    for (NSDictionary *dic in tiles) {
-        CGRect pRect = [g collisionBoundingBox];
-        
-        int gid = [[dic objectForKey:@"gid"] intValue];
-        if (gid) {
-            CGRect tileRect = CGRectMake([[dic objectForKey:@"x"] floatValue], [[dic objectForKey:@"y"] floatValue], map.tileSize.width, map.tileSize.height);
-            if (CGRectIntersectsRect(pRect, tileRect)) {
-                CGRect intersection = CGRectIntersection(pRect, tileRect);
-                int tileIndx = [tiles indexOfObject:dic];
-                
-                if (tileIndx == 0) {
-                    //tile is directly below player
-                    g.desiredPosition = ccp(g.desiredPosition.x, g.desiredPosition.y + intersection.size.height);
-                    g.velocity = ccp(g.velocity.x, 0.0);
-                    g.onGround = YES;
-                } else if (tileIndx == 2) {
-                    //tile is left of player
-                    g.desiredPosition = ccp(g.desiredPosition.x + intersection.size.width, g.desiredPosition.y);
-                        g.backwardMarch = NO;
-                        g.forwardMarch = YES;
-                } else if (tileIndx == 3) {
-                    //tile is right of player
-                    g.desiredPosition = ccp(g.desiredPosition.x - intersection.size.width, g.desiredPosition.y);
-                        g.forwardMarch = NO;
-                        g.backwardMarch = YES;
-                }
-            }
-        }
-    }
-    g.position = g.desiredPosition;
+    CGPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
+    CGPoint viewPoint = ccpSub(centerOfView, actualPosition);
+    map.position = viewPoint;
 }
 
 
-// movement
+
+// Player movement
+
+/*
+ I need to create Hud layer for this with sprite based buttons or something. Now button handling is not there. I need to finish mechanics first to make sure game runs fine - it would be impossible to test multi-touch controls (based on buttons) with iOS Simulator.
+*/
+
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *t in touches) {
         CGPoint touchLocation = [self convertTouchToNodeSpace:t];
@@ -488,8 +510,7 @@
     for (UITouch *t in touches) {
         
         CGPoint touchLocation = [self convertTouchToNodeSpace:t];
-        
-        //get previous touch and convert it to node space
+
         CGPoint previousTouchLocation = [t previousLocationInView:[t view]];
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         previousTouchLocation = ccp(previousTouchLocation.x, screenSize.height - previousTouchLocation.y);
@@ -533,23 +554,11 @@
         }
     }
 }
+// Movement handling ends here
 
--(void)setViewpointCenter:(CGPoint) position {
-    
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    
-    int x = MAX(position.x, winSize.width / 2);
-    int y = MAX(position.y, winSize.height / 2);
-    x = MIN(x, (map.mapSize.width * map.tileSize.width)
-            - winSize.width / 2);
-    y = MIN(y, (map.mapSize.height * map.tileSize.height)
-            - winSize.height/2);
-    CGPoint actualPosition = ccp(x, y);
-    
-    CGPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
-    CGPoint viewPoint = ccpSub(centerOfView, actualPosition);
-    map.position = viewPoint;
-}
+
+
+// Game state handler - sort of :)
 
 -(void)gameOver:(BOOL)won {
 	gameOver = YES;

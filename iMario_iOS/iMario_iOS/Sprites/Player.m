@@ -15,6 +15,9 @@
 @synthesize desiredPosition = _desiredPosition;
 @synthesize onGround = _onGround;
 
+@synthesize lives = _lives;
+@synthesize coins = _coins;
+
 @synthesize walkAction = _walkAction;
 @synthesize jumpAction = _jumpAction;
 @synthesize idleAction = _idleAction;
@@ -28,6 +31,8 @@
 {
     if (self = [super initWithSpriteFrameName:spriteFrameName]) {
         self.velocity = ccp(0.0, 0.0);
+        self.lives = 3;
+        self.coins = 0;
     }
     return self;
 }

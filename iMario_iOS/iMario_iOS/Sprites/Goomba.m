@@ -8,6 +8,10 @@
 
 #import "Goomba.h"
 
+/*
+ Maybe I should create class for sprites, and then subclass of that class to create player and goombas. Now it's basicly copy of Player.m with some minor differences.
+*/
+
 
 @implementation Goomba
 

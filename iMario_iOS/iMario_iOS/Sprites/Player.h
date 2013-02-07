@@ -17,6 +17,9 @@
 @property (nonatomic, assign) CGPoint desiredPosition;
 @property (nonatomic, assign) BOOL onGround;
 
+@property (nonatomic, assign) int lives;
+@property (nonatomic, assign) int coins;
+
 @property (nonatomic, retain) CCAction *walkAction;
 @property (nonatomic, retain) CCAction *jumpAction;
 @property (nonatomic, retain) CCAction *idleAction;

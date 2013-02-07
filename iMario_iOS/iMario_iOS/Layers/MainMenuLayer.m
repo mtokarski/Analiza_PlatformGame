@@ -20,7 +20,6 @@
     CCControlButton *button = (CCControlButton*) sender;
     switch (button.tag) {
         case PLAY_BUTTON_TAG:
-            // [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:[CCBReader sceneWithNodeGraphFromFile:@"GameScene.ccbi"]]];
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameScene node] withColor:ccWHITE]];
             break;
         case ABOUT_BUTTON_TAG:
