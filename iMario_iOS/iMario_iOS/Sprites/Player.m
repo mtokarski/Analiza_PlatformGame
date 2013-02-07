@@ -71,7 +71,7 @@
 }
 
 -(CGRect)collisionBoundingBox {
-    CGRect collisionBox = CGRectInset(self.boundingBox, 3, 0);
+    CGRect collisionBox = CGRectInset(self.boundingBox, 1, 0);
     CGPoint diff = ccpSub(self.desiredPosition, self.position);
     CGRect returnBoundingBox = CGRectOffset(collisionBox, diff.x, diff.y);
     return returnBoundingBox;

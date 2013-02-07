@@ -15,25 +15,18 @@
     CCTMXTiledMap *map;
     CCTMXLayer *walls;
     Player *mario;
-    Goomba *goomba1, *goomba2, *goomba3;
+    Goomba *goomba1, *goomba2, *goomba3, *goomba4, *goomba5, *goomba6, *goomba7, *goomba8, *goomba9, *goomba10, *goomba11;
+    BOOL gameOver;
 }
-
 @end
 
 @implementation GameLevelLayer
 
 +(CCScene *) scene
 {
-	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
-	
-	// 'layer' is an autorelease object.
 	GameLevelLayer *layer = [GameLevelLayer node];
-	
-	// add layer as a child to scene
 	[scene addChild: layer];
-	
-	// return the scene
 	return scene;
 }
 
@@ -47,8 +40,7 @@
         
         walls = [map layerNamed:@"Walls"];
         
-        
-        // Create animation
+        // Create animation for Mario
         [[CCSpriteFrameCache sharedSpriteFrameCache]
          addSpriteFramesWithFile:@"mario_default.plist"];
         
@@ -85,15 +77,13 @@
         // Animation created
         
         
-        // Goomba
-        
+        // Goomba animation
         [[CCSpriteFrameCache sharedSpriteFrameCache]
          addSpriteFramesWithFile:@"Goomba_default.plist"];
         
         CCSpriteBatchNode *GoombaSpriteSheet = [CCSpriteBatchNode
                                                 batchNodeWithFile:@"Goomba_default.png"];
         [self addChild:GoombaSpriteSheet];
-        
         
         NSMutableArray *goombaAnimFrames = [NSMutableArray array];
         for(int i = 1; i <= 2; ++i) {
@@ -103,28 +93,77 @@
         }
         
         CCAnimation *goombaAnim = [CCAnimation animationWithSpriteFrames:goombaAnimFrames delay:0.25f];
-
+        // Goomba animation created
         
+        // Init some goombas
         // Goomba 1
         goomba1 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
-        goomba1.position = ccp(380, 55);
+        goomba1.position = ccp(416, 55);
         [map addChild:goomba1 z:15];
         goomba1.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
         
         // Goomba 2
         goomba2 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
-        goomba2.position = ccp(510, 55);
+        goomba2.position = ccp(704, 55);
         [map addChild:goomba2 z:15];
         goomba2.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
         
-        // Goomba 2
+        // Goomba 3
         goomba3 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
-        goomba3.position = ccp(1300, 185);
+        goomba3.position = ccp(848, 55);
         [map addChild:goomba3 z:15];
         goomba3.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
+        
+        // Goomba 4
+        goomba4 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
+        goomba4.position = ccp(1296, 185);
+        [map addChild:goomba4 z:15];
+        goomba4.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
+        
+        // Goomba 5
+        goomba5 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
+        goomba5.position = ccp(1328, 185);
+        [map addChild:goomba5 z:15];
+        goomba5.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
+        
+        // Goomba 6
+        goomba6 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
+        goomba6.position = ccp(1536, 55);
+        [map addChild:goomba6 z:15];
+        goomba6.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
+        
+        // Goomba 7
+        goomba7 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
+        goomba7.position = ccp(1632, 55);
+        [map addChild:goomba7 z:15];
+        goomba7.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
+        
+        // Goomba 8
+        goomba8 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
+        goomba8.position = ccp(1936, 55);
+        [map addChild:goomba8 z:15];
+        goomba8.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
+        
+        // Goomba 9
+        goomba9 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
+        goomba9.position = ccp(2064, 55);
+        [map addChild:goomba9 z:15];
+        goomba9.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
+        
+        // Goomba 10
+        goomba10 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
+        goomba10.position = ccp(2720, 55);
+        [map addChild:goomba10 z:15];
+        goomba10.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
+        
+        // Goomba11
+        goomba11 = [[Goomba alloc] initWithSpriteFrameName:@"Goomba1.png"];
+        goomba11.position = ccp(2832, 55);
+        [map addChild:goomba11 z:15];
+        goomba11.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:goombaAnim]];
 
-        // Goomba
-
+        
+        // Create player
         mario = [[Player alloc] initWithSpriteFrameName:@"Mario_Idle.png"];
         mario.position = ccp(100, 55);
         [map addChild:mario z:15];
@@ -141,8 +180,6 @@
         mario.deadAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:deadAnim]];
         deadAnim.restoreOriginalFrame = NO;
         
-        // [mario runAction:mario.walkAction];
-        
         [self schedule:@selector(update:)];
 	}
 	return self;
@@ -150,44 +187,9 @@
 
 -(void)update:(ccTime)dt
 {
-    /*
-    I know it is bad, but hey - it works so far
-     
-    I'd have to rebuild a bit to solve this.
-    */
-    
-    // Goomba 1
-    if (mario.position.x < goomba1.position.x && goomba1.position.x - mario.position.x < 240) {
-        if (goomba1.Init) {
-            goomba1.Init = NO;
-            [self initGoomba:goomba1];
-        }
+    if (gameOver) {
+        return; // For now just for the sake of game end handling
     }
-    if (mario.position.x > goomba1.position.x && mario.position.x - goomba1.position.x > 240) {
-        //[map removeChild:goomba1 cleanup:YES];
-        [goomba1 removeFromParentAndCleanup:YES];
-    }
-    // Goomba 2
-    if (mario.position.x < goomba2.position.x && goomba2.position.x - mario.position.x < 240) {
-        if (goomba2.Init) {
-            goomba2.Init = NO;
-            [self initGoomba:goomba2];
-        }
-    }
-    if (mario.position.x > goomba2.position.x && mario.position.x - goomba2.position.x > 240) {
-        [goomba2 removeFromParentAndCleanup:YES];
-    }
-    // Goomba 3
-    if (mario.position.x < goomba3.position.x && goomba3.position.x - mario.position.x < 240) {
-        if (goomba3.Init) {
-            goomba3.Init = NO;
-            [self initGoomba:goomba3];
-        }
-    }
-    if (mario.position.x > goomba3.position.x && mario.position.x - goomba3.position.x > 240) {
-        [goomba3 removeFromParentAndCleanup:YES];
-    }
-    
     
     [mario update:dt];
     [self checkForAndResolveCollisions:mario];
@@ -200,6 +202,42 @@
     
     [goomba3 update:dt];
     [self goombaCollisions:goomba3];
+    
+    [goomba4 update:dt];
+    [self goombaCollisions:goomba4];
+    
+    [goomba5 update:dt];
+    [self goombaCollisions:goomba5];
+    
+    [goomba6 update:dt];
+    [self goombaCollisions:goomba6];
+    
+    [goomba7 update:dt];
+    [self goombaCollisions:goomba7];
+    
+    [goomba8 update:dt];
+    [self goombaCollisions:goomba8];
+    
+    [goomba9 update:dt];
+    [self goombaCollisions:goomba9];
+    
+    [goomba10 update:dt];
+    [self goombaCollisions:goomba10];
+    
+    [goomba11 update:dt];
+    [self goombaCollisions:goomba11];
+    
+    [self handleGoombasLikeABoss:goomba1 with:mario];
+    [self handleGoombasLikeABoss:goomba2 with:mario];
+    [self handleGoombasLikeABoss:goomba3 with:mario];
+    [self handleGoombasLikeABoss:goomba4 with:mario];
+    [self handleGoombasLikeABoss:goomba5 with:mario];
+    [self handleGoombasLikeABoss:goomba6 with:mario];
+    [self handleGoombasLikeABoss:goomba7 with:mario];
+    [self handleGoombasLikeABoss:goomba8 with:mario];
+    [self handleGoombasLikeABoss:goomba9 with:mario];
+    [self handleGoombasLikeABoss:goomba10 with:mario];
+    [self handleGoombasLikeABoss:goomba11 with:mario];
     
     [self setViewpointCenter:mario.position];
 }
@@ -235,8 +273,8 @@
         int r = (int)(i / 3);
         CGPoint tilePos = ccp(plPos.x + (c - 1), plPos.y + (r - 1));
         
-        if (tilePos.y > (map.mapSize.height - 1)) {
-            //fallen in a hole
+        if (tilePos.y > (map.mapSize.height - 1)) {  // falling goomba causes Game Over :(
+            [self gameOver:0];
             return nil;
         }
         
@@ -259,12 +297,69 @@
     [gids removeObjectAtIndex:2];
     [gids exchangeObjectAtIndex:4 withObjectAtIndex:6];
     [gids exchangeObjectAtIndex:0 withObjectAtIndex:4];
+
+    return (NSArray *)gids;
+}
+
+-(NSArray *)GOOMBAgetSurroundingTilesAtPosition:(CGPoint)position forLayer:(CCTMXLayer *)layer {
     
-    for (NSDictionary *d in gids) {
-        NSLog(@"%@", d);
+    CGPoint plPos = [self tileCoordForPosition:position];
+    
+    NSMutableArray *gids = [NSMutableArray array];
+    
+    for (int i = 0; i < 9; i++) {
+        int c = i % 3;
+        int r = (int)(i / 3);
+        CGPoint tilePos = ccp(plPos.x + (c - 1), plPos.y + (r - 1));
+        
+        if (tilePos.y > (map.mapSize.height - 1)) {
+            return nil;
+        }
+        
+        int tgid = [layer tileGIDAt:tilePos];
+        
+        CGRect tileRect = [self tileRectFromTileCoords:tilePos];
+        
+        NSDictionary *tileDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [NSNumber numberWithInt:tgid], @"gid",
+                                  [NSNumber numberWithFloat:tileRect.origin.x], @"x",
+                                  [NSNumber numberWithFloat:tileRect.origin.y], @"y",
+                                  [NSValue valueWithCGPoint:tilePos],@"tilePos",
+                                  nil];
+        [gids addObject:tileDict];
+        
     }
     
+    [gids removeObjectAtIndex:4];
+    [gids insertObject:[gids objectAtIndex:2] atIndex:6];
+    [gids removeObjectAtIndex:2];
+    [gids exchangeObjectAtIndex:4 withObjectAtIndex:6];
+    [gids exchangeObjectAtIndex:0 withObjectAtIndex:4];
+
     return (NSArray *)gids;
+}
+
+-(void)handleGoombasLikeABoss:(Goomba *)g with:(Player *)p {
+    
+    if (p.position.x < g.position.x && g.position.x - p.position.x < 240) {
+        if (g.Init) {
+            g.Init = NO;
+            [self initGoomba:g];
+        }
+    }
+    if (p.position.x > g.position.x && p.position.x - g.position.x > 240) {
+        [g removeFromParentAndCleanup:YES];
+    }
+    CGRect pRect = [p collisionBoundingBox];
+    CGRect gRect = [g collisionBoundingBox];
+    if (CGRectIntersectsRect(pRect, gRect)) {
+        if (abs(p.position.x - g.position.x) <= 8 && p.position.y > g.position.y) {
+            [g removeFromParentAndCleanup:YES];
+            g.Dead = YES;
+        } else if (!(g.Dead)) {
+            [self gameOver:0];
+        }
+    }
 }
 
 -(void)checkForAndResolveCollisions:(Player *)p {
@@ -330,7 +425,7 @@
 
 -(void)goombaCollisions:(Goomba *)g {
     
-    NSArray *tiles = [self getSurroundingTilesAtPosition:g.position forLayer:walls ];
+    NSArray *tiles = [self GOOMBAgetSurroundingTilesAtPosition:g.position forLayer:walls ];
     
     g.onGround = NO;
     
@@ -349,10 +444,6 @@
                     g.desiredPosition = ccp(g.desiredPosition.x, g.desiredPosition.y + intersection.size.height);
                     g.velocity = ccp(g.velocity.x, 0.0);
                     g.onGround = YES;
-                } else if (tileIndx == 1) {
-                    //tile is directly above player
-                    g.desiredPosition = ccp(g.desiredPosition.x, g.desiredPosition.y - intersection.size.height);
-                    g.velocity = ccp(g.velocity.x, 0.0);
                 } else if (tileIndx == 2) {
                     //tile is left of player
                     g.desiredPosition = ccp(g.desiredPosition.x + intersection.size.width, g.desiredPosition.y);
@@ -363,28 +454,6 @@
                     g.desiredPosition = ccp(g.desiredPosition.x - intersection.size.width, g.desiredPosition.y);
                         g.forwardMarch = NO;
                         g.backwardMarch = YES;
-                } else {
-                    if (intersection.size.width > intersection.size.height) {
-                        //tile is diagonal, but resolving collision vertially
-                        g.velocity = ccp(g.velocity.x, 0.0);
-                        float resolutionHeight;
-                        if (tileIndx > 5) {
-                            resolutionHeight = intersection.size.height;
-                            g.onGround = YES;
-                        } else {
-                            resolutionHeight = -intersection.size.height;
-                        }
-                        g.desiredPosition = ccp(g.desiredPosition.x, g.desiredPosition.y + resolutionHeight);
-                        
-                    } else {
-                        float resolutionWidth;
-                        if (tileIndx == 6 || tileIndx == 4) {
-                            resolutionWidth = intersection.size.width;
-                        } else {
-                            resolutionWidth = -intersection.size.width;
-                        }
-                        g.desiredPosition = ccp(g.desiredPosition.x + resolutionWidth, g.desiredPosition.y);
-                    }
                 }
             }
         }
@@ -480,6 +549,24 @@
     CGPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
     CGPoint viewPoint = ccpSub(centerOfView, actualPosition);
     map.position = viewPoint;
+}
+
+-(void)gameOver:(BOOL)won {
+	gameOver = YES;
+	NSString *gameText;
+	
+	if (won) {
+		gameText = @"You Won!";
+	} else {
+        [mario stopAllActions];
+        [mario runAction:mario.deadAction];
+		gameText = @"You have Died!";
+	}
+	
+    CCLabelTTF *diedLabel = [[CCLabelTTF alloc] initWithString:gameText fontName:@"Marker Felt" fontSize:40];
+    diedLabel.position = ccp(240, 200);
+    
+    [self addChild:diedLabel];
 }
 
 @end

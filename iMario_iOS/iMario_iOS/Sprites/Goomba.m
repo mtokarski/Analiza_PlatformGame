@@ -21,18 +21,20 @@
 @synthesize backwardMarch = _backwardMarch;
 
 @synthesize Init = _Init;
+@synthesize Dead = _Dead;
 
 -(id)initWithSpriteFrameName:(NSString *)spriteFrameName
 {
     if (self = [super initWithSpriteFrameName:spriteFrameName]) {
         self.velocity = ccp(0.0, 0.0);
         self.Init = YES;
+        self.Dead = NO;
     }
     return self;
 }
 
 -(void)update:(ccTime)dt {
-    CGPoint gravity = ccp(0.0, -450.0);
+    CGPoint gravity = ccp(0.0, -350.0);
     CGPoint gravityStep = ccpMult(gravity, dt);
     
     CGPoint forwardMove = ccp(800.0, 0.0);
@@ -61,7 +63,7 @@
 }
 
 -(CGRect)collisionBoundingBox {
-    CGRect collisionBox = CGRectInset(self.boundingBox, 3, 0);
+    CGRect collisionBox = CGRectInset(self.boundingBox, 1, 0);
     CGPoint diff = ccpSub(self.desiredPosition, self.position);
     CGRect returnBoundingBox = CGRectOffset(collisionBox, diff.x, diff.y);
     return returnBoundingBox;

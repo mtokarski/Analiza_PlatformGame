@@ -23,6 +23,7 @@
 @property (nonatomic, assign) BOOL backwardMarch;
 
 @property (nonatomic, assign) BOOL Init;
+@property (nonatomic, assign) BOOL Dead;
 
 -(void)update:(ccTime)dt;
 -(CGRect)collisionBoundingBox;
