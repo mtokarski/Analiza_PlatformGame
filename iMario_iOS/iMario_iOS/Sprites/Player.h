@@ -21,6 +21,7 @@
 @property (nonatomic, assign) int coins;
 
 @property (nonatomic, retain) CCAction *walkAction;
+@property (nonatomic, retain) CCAction *backAction;
 @property (nonatomic, retain) CCAction *jumpAction;
 @property (nonatomic, retain) CCAction *idleAction;
 @property (nonatomic, retain) CCAction *deadAction;

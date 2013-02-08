@@ -172,6 +172,7 @@
 		ADA7AF9916A306AF00173D6A /* ccbDefaultImages-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADA7AF8E16A306AF00173D6A /* ccbDefaultImages-ipad.plist */; };
 		ADA7AF9A16A306AF00173D6A /* ccbDefaultImages-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADA7AF8F16A306AF00173D6A /* ccbDefaultImages-ipadhd.plist */; };
 		ADA7AF9B16A306AF00173D6A /* ccbDefaultImages.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADA7AF9016A306AF00173D6A /* ccbDefaultImages.plist */; };
+		ADB67A2E16C55A3D00E70EE4 /* CCMenuItemSpriteHoldable.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB67A2D16C55A3D00E70EE4 /* CCMenuItemSpriteHoldable.m */; };
 		ADD6E61D16C19E8300C2F6B1 /* jump.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD6E61A16C19E8300C2F6B1 /* jump.png */; };
 		ADD6E61E16C19E8300C2F6B1 /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD6E61B16C19E8300C2F6B1 /* left.png */; };
 		ADD6E61F16C19E8300C2F6B1 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD6E61C16C19E8300C2F6B1 /* right.png */; };
@@ -503,6 +504,8 @@
 		ADA7AF8E16A306AF00173D6A /* ccbDefaultImages-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ccbDefaultImages-ipad.plist"; path = "Resources/ccbDefaultImages-ipad.plist"; sourceTree = "<group>"; };
 		ADA7AF8F16A306AF00173D6A /* ccbDefaultImages-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ccbDefaultImages-ipadhd.plist"; path = "Resources/ccbDefaultImages-ipadhd.plist"; sourceTree = "<group>"; };
 		ADA7AF9016A306AF00173D6A /* ccbDefaultImages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ccbDefaultImages.plist; path = Resources/ccbDefaultImages.plist; sourceTree = "<group>"; };
+		ADB67A2C16C55A3D00E70EE4 /* CCMenuItemSpriteHoldable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCMenuItemSpriteHoldable.h; path = Controls/CCMenuItemSpriteHoldable.h; sourceTree = "<group>"; };
+		ADB67A2D16C55A3D00E70EE4 /* CCMenuItemSpriteHoldable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCMenuItemSpriteHoldable.m; path = Controls/CCMenuItemSpriteHoldable.m; sourceTree = "<group>"; };
 		ADD6E61A16C19E8300C2F6B1 /* jump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = jump.png; path = Resources/jump.png; sourceTree = "<group>"; };
 		ADD6E61B16C19E8300C2F6B1 /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = left.png; path = Resources/left.png; sourceTree = "<group>"; };
 		ADD6E61C16C19E8300C2F6B1 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = right.png; path = Resources/right.png; sourceTree = "<group>"; };
@@ -577,6 +580,7 @@
 		ADA7ADB816A2FE1A00173D6A /* iMario_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				ADB67A2816C5596000E70EE4 /* Controls */,
 				AD21BE2C16A3E68F004341D0 /* Sprites */,
 				ADA7AF9F16A3086B00173D6A /* Scenes */,
 				ADA7AF7E16A2FE8E00173D6A /* Layers */,
@@ -1070,6 +1074,15 @@
 			name = Scenes;
 			sourceTree = "<group>";
 		};
+		ADB67A2816C5596000E70EE4 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				ADB67A2C16C55A3D00E70EE4 /* CCMenuItemSpriteHoldable.h */,
+				ADB67A2D16C55A3D00E70EE4 /* CCMenuItemSpriteHoldable.m */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1289,6 +1302,7 @@
 				AD21BE3A16A3E713004341D0 /* MainMenuLayer.m in Sources */,
 				AD21BE3D16A3E78E004341D0 /* Player.m in Sources */,
 				AD4E3F2316C2C99A0023C4E3 /* Goomba.m in Sources */,
+				ADB67A2E16C55A3D00E70EE4 /* CCMenuItemSpriteHoldable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

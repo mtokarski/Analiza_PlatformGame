@@ -19,6 +19,7 @@
 @synthesize coins = _coins;
 
 @synthesize walkAction = _walkAction;
+@synthesize backAction = _backAction;
 @synthesize jumpAction = _jumpAction;
 @synthesize idleAction = _idleAction;
 @synthesize deadAction = _deadAction;

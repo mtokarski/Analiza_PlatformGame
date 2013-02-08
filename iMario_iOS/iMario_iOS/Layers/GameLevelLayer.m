@@ -9,14 +9,21 @@
 #import "GameLevelLayer.h"
 #import "Player.h"
 #import "Goomba.h"
+#import "CCMenuItemSpriteHoldable.h"
+
 
 @interface GameLevelLayer()
 {
+    CCMenuItemSpriteHoldable *leftBtn;
+    CCMenuItemSpriteHoldable *rightBtn;
+    CCMenuItemSpriteHoldable *jumpBtn;
+
     CCTMXTiledMap *map;
     CCTMXLayer *walls;
     Player *mario;
     Goomba *goomba1, *goomba2, *goomba3, *goomba4, *goomba5, *goomba6, *goomba7, *goomba8, *goomba9, *goomba10, *goomba11;
     BOOL gameOver;
+    BOOL jumpAnimSwitch, walkAnimSwitch, backAnimSwitch;
 }
 @end
 
@@ -25,6 +32,7 @@
 +(CCScene *) scene
 {
 	CCScene *scene = [CCScene node];
+    
 	GameLevelLayer *layer = [GameLevelLayer node];
 	[scene addChild: layer];
 	return scene;
@@ -32,8 +40,12 @@
 
 -(id) init
 {
-	if( (self=[super init]) ) {
+	if( (self=[super init]) ) {        
         self.isTouchEnabled = YES;
+        
+        jumpAnimSwitch = YES;
+        walkAnimSwitch = YES;
+        backAnimSwitch = YES;
         
         map = [[CCTMXTiledMap alloc] initWithTMXFile:@"Level1.tmx"];
         [self addChild:map];
@@ -55,6 +67,13 @@
               [NSString stringWithFormat:@"Mario_Walk%d.png", i]]];
         }
         
+        NSMutableArray *backAnimFrames = [NSMutableArray array];
+        for(int i = 1; i <= 3; ++i) {
+            [backAnimFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"Mario_Back%d.png", i]]];
+        }
+        
         NSMutableArray *jumpAnimFrames = [NSMutableArray array];
             [jumpAnimFrames addObject:
              [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
@@ -71,6 +90,7 @@
           [NSString stringWithFormat:@"Mario_Dead.png"]]];
         
         CCAnimation *walkAnim = [CCAnimation animationWithSpriteFrames:walkAnimFrames delay:0.15f];
+        CCAnimation *backAnim = [CCAnimation animationWithSpriteFrames:backAnimFrames delay:0.15f];
         CCAnimation *jumpAnim = [CCAnimation animationWithSpriteFrames:jumpAnimFrames delay:0.15f];
         CCAnimation *idleAnim = [CCAnimation animationWithSpriteFrames:idleAnimFrames delay:0.15f];
         CCAnimation *deadAnim = [CCAnimation animationWithSpriteFrames:deadAnimFrames delay:0.15f];
@@ -162,6 +182,9 @@
         mario.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:walkAnim]];
         walkAnim.restoreOriginalFrame = NO;
         
+        mario.backAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:backAnim]];
+        walkAnim.restoreOriginalFrame = NO;
+        
         mario.jumpAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:jumpAnim]];
         jumpAnim.restoreOriginalFrame = NO;
         
@@ -171,6 +194,22 @@
         mario.deadAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:deadAnim]];
         deadAnim.restoreOriginalFrame = NO;
 // Player created
+        
+
+// Interface
+        leftBtn = [CCMenuItemSpriteHoldable itemWithNormalSprite:[CCSprite spriteWithFile:@"left.png"] selectedSprite:[CCSprite spriteWithFile:@"left.png"] target:self selector:@selector(leftButtonPressed)];
+        rightBtn = [CCMenuItemSpriteHoldable itemWithNormalSprite:[CCSprite spriteWithFile:@"right.png"] selectedSprite:[CCSprite spriteWithFile:@"right.png"] target:self selector:@selector(rightButtonPressed)];
+        jumpBtn	= [CCMenuItemSpriteHoldable itemWithNormalSprite:[CCSprite spriteWithFile:@"jump.png"] selectedSprite:[CCSprite spriteWithFile:@"jump.png"] target:self selector:@selector(jumpButtonPressed)];
+        
+        CCMenu *directionalMenu = [CCMenu menuWithItems:leftBtn, rightBtn, nil];
+        [directionalMenu alignItemsHorizontallyWithPadding:30];
+        [directionalMenu setPosition:ccp(120,250)];
+        [self addChild:directionalMenu];
+        
+        CCMenu *buttonsMenu = [CCMenu menuWithItems:jumpBtn,nil];
+        [buttonsMenu alignItemsHorizontallyWithPadding:0];
+        [buttonsMenu setPosition:ccp(480-90,250)];
+        [self addChild:buttonsMenu];
         
         [self schedule:@selector(update:)];
 	}
@@ -187,7 +226,45 @@
         return;
     }
     
-    // I bet it's not the best approach. Too tired today to work on that.
+// Handle movement
+    if (jumpBtn.buttonHeld) {
+        if (jumpAnimSwitch) {
+            [mario stopAllActions];
+            [mario runAction:mario.jumpAction];
+            jumpAnimSwitch = NO;
+        }
+        mario.mightAsWellJump = YES;
+    } else {
+        mario.mightAsWellJump = NO;
+    }
+    if (rightBtn.buttonHeld) {
+        if (walkAnimSwitch) {
+            [mario stopAllActions];
+            [mario runAction:mario.walkAction];
+            walkAnimSwitch = NO;
+            backAnimSwitch = YES;
+        }
+        mario.backwardMarch = NO;
+        mario.forwardMarch = YES;
+    } else {
+        mario.forwardMarch = NO;
+        //walkAnimSwitch = YES;
+    }
+    if (leftBtn.buttonHeld) {
+        if (backAnimSwitch) {
+            [mario stopAllActions];
+            [mario runAction:mario.backAction];
+            backAnimSwitch = NO;
+            walkAnimSwitch = YES;
+        }
+        mario.forwardMarch = NO;
+        mario.backwardMarch = YES;
+    } else {
+        mario.backwardMarch = NO;
+        //walkAnimSwitch = YES;
+    }
+// Not the best, but works quite well
+    
     
     [mario update:dt];
     [self checkForAndResolveCollisions:mario];
@@ -484,7 +561,7 @@
 /*
  I need to create Hud layer for this with sprite based buttons or something. Now button handling is not there. I need to finish mechanics first to make sure game runs fine - it would be impossible to test multi-touch controls (based on buttons) with iOS Simulator.
 */
-
+/*
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *t in touches) {
         CGPoint touchLocation = [self convertTouchToNodeSpace:t];
@@ -554,6 +631,7 @@
         }
     }
 }
+*/
 // Movement handling ends here
 
 
@@ -576,6 +654,25 @@
     diedLabel.position = ccp(240, 200);
     
     [self addChild:diedLabel];
+}
+
+// Controls selectors
+-(void)leftButtonPressed {
+    [mario stopAllActions];
+    [mario runAction:mario.idleAction];
+    backAnimSwitch = YES;
+}
+
+-(void)rightButtonPressed {
+    [mario stopAllActions];
+    [mario runAction:mario.idleAction];
+    walkAnimSwitch = YES;
+}
+
+-(void)jumpButtonPressed {
+    [mario stopAllActions];
+    [mario runAction:mario.idleAction];
+    jumpAnimSwitch = YES;
 }
 
 @end
